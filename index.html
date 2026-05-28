@@ -1,96 +1,283 @@
 <!doctype html>
-<html lang="en">
+<html lang="id" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <title>Zane's Terminal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Font Awesome -->
+    <title>ikanparii - Cybersecurity Analyst</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <div class="grid-bg"></div>
+    <canvas id="particles"></canvas>
 
-    <div class="wrapper">
-      <div class="terminal">
-        <!-- TERMINAL BAR -->
-        <div class="terminal-bar">
-          <span></span><span></span><span></span>
-          <p>root@system:~</p>
+    <nav id="nav">
+      <div class="container">
+        <div class="nav-inner">
+          <a href="#hero" class="nav-logo">ikanparii<span></span></a>
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Expertise</a></li>
+            <li><a href="#certs">Credentials</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <a href="#contact" class="nav-cta">Connect</a>
         </div>
+      </div>
+    </nav>
 
-        <!-- TERMINAL BODY -->
-        <div class="terminal-body">
-          <div class="prompt">
-            <span class="user">zane@localhost</span>
-            <span>:~$ whoami -v</span>
-          </div>
-
-          <div class="profile">
-            <div class="profile-left">
-              <h1>Zane Still Learning</h1>
-
-              <div class="typing-wrapper">
-                <span id="typing" class="role"></span>
-                <span class="cursor-blink"></span>
-              </div>
+    <section id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <h1 class="hero-title">
+              Exploring the<br />
+              <span class="gradient-text">Deep Sea</span><br />
+              of Cyber<br />
+              Security.
+            </h1>
+            <p class="hero-desc">
+              Junior Security Analyst yang berspesialisasi dalam Blue Team
+              Operations - deteksi ancaman, investigasi insiden, dan penguatan
+              pertahanan infrastruktur digital.
+            </p>
+            <div class="hero-actions">
+              <a href="#projects" class="btn-primary">View Projects</a>
+              <a href="#contact" class="btn-secondary">Get in Touch</a>
             </div>
           </div>
+          <div class="depth-gauge">
+            <div class="gauge-ring gauge-ring-1"></div>
+            <div class="gauge-ring gauge-ring-2"></div>
+            <div class="gauge-ring gauge-ring-3"></div>
+            <div class="gauge-ring gauge-ring-4"></div>
+            <div id="ticks-container"></div>
+            <div class="gauge-center">
+              <div class="gauge-depth">4000</div>
+              <div class="gauge-unit">meters</div>
+              <div class="gauge-label">Abyssal Zone</div>
+            </div>
+            <div class="gauge-status-bar">
+              <span class="status-led"></span>
+              <span>SYSTEMS NOMINAL</span>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-indicator">
+          <div class="scroll-line"></div>
+          <span class="scroll-text">Scroll</span>
+        </div>
+      </div>
+    </section>
 
-          <!-- PROJECTS -->
-          <div class="section">
-            <h3>Projects</h3>
-            <!--
-            <a href="#" class="card">
-              <p class="section-title">Cyber Things</p>
-              <p class="section-subtitle">Tools And Exploit Code</p>
-            </a>
-            
-            <a href="#" class="card">
-              <p class="section-title">Zane's Note</p>
-              <p class="section-subtitle">
-                All Notes about CyberSec And Data Analyst
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">01 - Profile</div>
+          <h2 class="section-title">Who's behind<br />the screen.</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-bio">
+            <p>
+              Saya <strong>Fachri Rasyiq Pramana</strong>, di GitHub pakai
+              nama <strong>IkanParii</strong>. Saya suka ngulik
+              <strong>Blue Team Operations</strong>, baca log, dan ngerjain
+              CTF buat nambah jam terbang. Di sini saya nyimpen writeup dan
+              catatan belajar biar gampang dibaca lagi.
+            </p>
+            <p>
+              Intinya, saya pengen bikin referensi yang santai, jelas, dan
+              tetap berguna buat siapa pun yang lagi belajar cybersecurity.
+              Kalau ada challenge baru, biasanya saya catat alurnya dulu,
+              baru dirapihin jadi writeup.
+            </p>
+          </div>
+          <div class="terminal">
+            <div class="terminal-header">
+              <span class="t-dot t-red"></span>
+              <span class="t-dot t-yellow"></span>
+              <span class="t-dot t-green"></span>
+              <span class="terminal-title">DIAGNOSTICS_CON - bash</span>
+            </div>
+            <div>
+              <p>
+                <span class="t-prompt">ikanparii@sec-lab</span> ~ $
+                <span class="t-cmd">whoami</span>
               </p>
-            </a>
--->
-            <a href="https://rii-dev.github.io/just-blog/" class="card">
-              <p class="section-title">Just Blog</p>
-              <p class="section-subtitle">Self Thought and Writeup</p>
-            </a>
-          </div>
-
-          <!-- CONNECT -->
-          <div class="section">
-            <h3>Connect</h3>
-
-            <div class="connect">
-              <a href="https://github.com/rii-dev"
-                ><i class="fab fa-github"></i
-              ></a>
-              <a href="www.linkedin.com/in/fachri-rasyiq-pramana"
-                ><i class="fab fa-linkedin"></i
-              ></a>
-              <a href="https://discord.com/users/534354946791833605"><i class="fab fa-discord"></i></a>
-              <a href="https://www.instagram.com/f.rasyiq/"><i class="fab fa-instagram"></i></a>
+              <p class="t-output">Cyber Security Enthusiast</p>
+              <br />
+              <p>
+                <span class="t-prompt">ikanparii@sec-lab</span> ~ $
+                <span class="t-cmd">cat env.cfg</span>
+              </p>
+              <p class="t-output">
+                <span class="t-key">LOCATION</span> &nbsp;&nbsp;Indonesia
+              </p>
+              <p class="t-output">
+                <span class="t-key">INSTITUTION</span> &nbsp;&nbsp;Politeknik
+                Negeri Cilacap
+              </p>
+              <p class="t-output">
+                <span class="t-key">TOOLS</span> &nbsp;&nbsp;&nbsp;&nbsp;Wazuh,
+                Wireshark, Volatility
+              </p>
+              <p class="t-output">
+                <span class="t-key">FOCUS</span> &nbsp;&nbsp;&nbsp;&nbsp;DFIR,
+                Blue Team, CTF
+              </p>
+              <p class="t-output">
+                <span class="t-key">STATUS</span> &nbsp;&nbsp;&nbsp;<span
+                  style="color: var(--marine-teal)"
+                  >ACTIVE &#9679;</span
+                >
+              </p>
+              <br />
+              <p>
+                <span class="t-prompt">ikanparii@sec-lab</span> ~ $
+                <span class="t-cursor"></span>
+              </p>
             </div>
-          </div>
-          <div class="terminal-footer">
-            <span class="status-dot"></span>
-            <span>Its Encrypted</span>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <script src="app.js"></script>
+    <section id="skills">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">02 - Expertise</div>
+          <h2 class="section-title">Technical<br />Capability Matrix.</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skills-list" id="skills-list"></div>
+          <div class="chart-wrap">
+            <canvas id="skillsChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certs">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">03 - Credentials</div>
+          <h2 class="section-title">Certification<br />& Competition.</h2>
+        </div>
+        <div class="filter-bar cert-filter-bar">
+          <button class="filter-btn active" data-cert-filter="all">All</button>
+          <button class="filter-btn" data-cert-filter="certification">Certification</button>
+          <button class="filter-btn" data-cert-filter="bootcamp">Bootcamp</button>
+          <button class="filter-btn" data-cert-filter="competition">Competition</button>
+        </div>
+        <div class="creds-grid" id="certs-grid"></div>
+        <div class="certs-pagination">
+          <button class="cert-page-btn" id="certs-prev" type="button">Prev</button>
+          <span class="cert-page-info" id="certs-page-info">Slide 1 / 1</span>
+          <button class="cert-page-btn" id="certs-next" type="button">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">04 - Work</div>
+          <h2 class="section-title">Featured Projects<br />& Analysis.</h2>
+        </div>
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="tool">Tool</button>
+          <button class="filter-btn" data-filter="writeup">Writeup</button>
+        </div>
+        <div class="projects-grid" id="projects-grid"></div>
+      </div>
+    </section>
+
+    <section id="blog">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">05 - Blog</div>
+          <h2 class="section-title">Writeups<br />& Notes.</h2>
+        </div>
+        <div class="projects-grid" id="blog-grid"></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">06 - Contact</div>
+          <h2 class="section-title">Initialize<br />Connection.</h2>
+        </div>
+        <div class="contact-layout">
+          <div>
+            <p class="contact-info-desc">
+              Terbuka untuk peluang kolaborasi, konsultasi keamanan, atau
+              sekadar diskusi teknis. Kirim sinyal - saya akan membalasnya.
+            </p>
+            <div class="contact-links">
+              <a
+                href="https://github.com/IkanParii"
+                target="_blank"
+                class="contact-link-item"
+              >
+                <span class="link-platform">GitHub</span>
+                <span class="link-label">github.com/IkanParii</span>
+                <span class="link-arrow">-&gt;</span>
+              </a>
+              <a
+                href="https://ikanparii.github.io/just-blog/"
+                target="_blank"
+                class="contact-link-item"
+              >
+                <span class="link-platform">Blog</span>
+                <span class="link-label">Zane's Note - CTF Writeups</span>
+                <span class="link-arrow">-&gt;</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/fachri-rasyiq-pramana"
+                target="_blank"
+                class="contact-link-item"
+              >
+                <span class="link-platform">LinkedIn</span>
+                <span class="link-label">linkedin.com/in/fachri-rasyiq-pramana</span>
+                <span class="link-arrow">-&gt;</span>
+              </a>
+            </div>
+          </div>
+          <div class="contact-panel">
+            <div class="contact-panel-title">Fastest Route</div>
+            <p class="contact-panel-desc">
+              Aku nggak pakai form email di sini. Kalau mau kontak, paling
+              gampang lewat GitHub, LinkedIn, atau referensi dari blog.
+            </p>
+            <div class="contact-panel-note">
+              <span class="contact-panel-label">Preferred</span>
+              <span class="contact-panel-value">GitHub or LinkedIn</span>
+            </div>
+            <div class="contact-panel-note">
+              <span class="contact-panel-label">Best for</span>
+              <span class="contact-panel-value">Collab, questions, feedback</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <span class="footer-copy">&copy; 2026 ikanparii - All rights reserved.</span>
+          <span class="footer-mark">Built by <span>ikanparii</span> - Depth: 4000m</span>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="app.js"></script>
   </body>
 </html>
