@@ -10,7 +10,7 @@ A clean, data-driven cybersecurity portfolio built with HTML, CSS, Vanilla JavaS
 - Credentials section with certificate cards
 - Projects section with filterable cards
 - Blog section for writeups and notes
-- Contact section with social links and form UI
+- Contact section with social links
 
 ## Tech Stack
 
