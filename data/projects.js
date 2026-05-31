@@ -22,7 +22,7 @@ export const projects = [
   {
     category: "tool",
     type: "Temporary Mail Tool",
-    title: "Void Mail -Temporary Email Generator",
+    title: "Void Mail - Temporary Email Generator",
     desc: "VoidMail adalah aplikasi temporary mail berbasis privasi yang digunakan untuk membuat alamat email sementara tanpa registrasi",
     tags: ["Web Development", "Privacy"],
     link: "https://void-mail.ikanparii.workers.dev/",
