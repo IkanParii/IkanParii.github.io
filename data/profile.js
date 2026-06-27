@@ -13,7 +13,7 @@ export const profile = {
   focus: ["Blue Team", "CTF"],
   tools: ["Wazuh", "BurpSuite", "VS-Code"],
   summary:
-    "Cybersecurity enthusiast yang tertarik pada Blue Team Operations, Digital Forensics, dan eksplorasi threat analysis lewat CTF dan praktik langsung",
+    "Blue Team Analyst & CTF enthusiast — ngulik log, forensic, dan threat detection. Suka sama yang namanya DFIR, SIEM, dan tantangan security.",
 
   // Copy utama section About.
   about:
