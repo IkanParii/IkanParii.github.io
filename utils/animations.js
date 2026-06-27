@@ -76,3 +76,97 @@ export function initSkillAnimations(scope = document) {
     observer.observe(anchor);
   }
 }
+
+export function initDepthMeter() {
+  const sections = document.querySelectorAll("[data-depth]");
+  const depthValue = document.getElementById("depth-value");
+  const depthBar = document.getElementById("depth-bar");
+  const depthMeter = document.getElementById("depth-meter");
+  const footerDepth = document.getElementById("footer-depth");
+
+  if (!sections.length || !depthValue || !depthBar) return;
+
+  let currentDepth = 0;
+  let targetDepth = 0;
+  let rafId = 0;
+
+  function getCurrentDepth() {
+    const scrollY = window.scrollY;
+    const viewportH = window.innerHeight;
+    const scrollBottom = scrollY + viewportH;
+    const docHeight = document.documentElement.scrollHeight;
+    const progress = Math.min(1, scrollBottom / docHeight);
+
+    // Find which section the viewport center is in
+    const center = scrollY + viewportH * 0.4;
+    let depth = 0;
+
+    for (const section of sections) {
+      const top = section.offsetTop;
+      const bottom = top + section.offsetHeight;
+      if (center >= top && center <= bottom) {
+        depth = Math.round(parseInt(section.dataset.depth, 10) * (0.6 + ((center - top) / section.offsetHeight) * 0.4));
+        break;
+      }
+    }
+
+    // Fallback: use full-page progress * max depth
+    if (depth === 0) {
+      const maxDepth = parseInt(sections[sections.length - 1]?.dataset.depth || "4000", 10);
+      depth = Math.round(progress * maxDepth);
+    }
+
+    return Math.min(depth, 9999);
+  }
+
+  function animateDepth() {
+    targetDepth = getCurrentDepth();
+    currentDepth += (targetDepth - currentDepth) * 0.12;
+
+    if (Math.abs(currentDepth - targetDepth) < 0.5) {
+      currentDepth = targetDepth;
+    }
+
+    const display = Math.round(currentDepth);
+    depthValue.textContent = display;
+    if (footerDepth) footerDepth.textContent = display;
+
+    const maxDepth = 4000;
+    depthBar.style.height = `${Math.min(100, (currentDepth / maxDepth) * 100)}%`;
+
+    if (Math.abs(currentDepth - targetDepth) > 0.5) {
+      rafId = window.requestAnimationFrame(animateDepth);
+    }
+  }
+
+  function onScroll() {
+    if (!rafId) {
+      rafId = window.requestAnimationFrame(animateDepth);
+    }
+  }
+
+  function onScrollEnd() {
+    window.cancelAnimationFrame(rafId);
+    rafId = 0;
+    // Snap to final
+    currentDepth = getCurrentDepth();
+    const display = Math.round(currentDepth);
+    depthValue.textContent = display;
+    if (footerDepth) footerDepth.textContent = display;
+    depthBar.style.height = `${Math.min(100, (currentDepth / 4000) * 100)}%`;
+  }
+
+  // Show meter after short delay
+  window.setTimeout(() => {
+    depthMeter?.classList.add("is-visible");
+  }, 800);
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("scrollend", onScrollEnd, { passive: true });
+
+  // Initial render
+  currentDepth = getCurrentDepth();
+  depthValue.textContent = Math.round(currentDepth);
+  if (footerDepth) footerDepth.textContent = Math.round(currentDepth);
+  depthBar.style.height = `${Math.min(100, (currentDepth / 4000) * 100)}%`;
+}
