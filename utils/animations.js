@@ -28,6 +28,15 @@ export function initRevealAnimations() {
     ".section-header, .about-grid, .stats-row, .skills-grid, .creds-grid, .filter-bar, .certs-pagination, .contact-layout, .contact-panel, .stat-item, .cred-card, .project-card, footer .footer-inner",
   );
 
+  // If user prefers reduced motion, reveal immediately without animation
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    targets.forEach((target) => {
+      target.style.opacity = "1";
+      target.style.transform = "translateY(0)";
+    });
+    return;
+  }
+
   targets.forEach((target) => {
     target.classList.add("section-fade");
   });
@@ -52,6 +61,15 @@ export function initSkillAnimations(scope = document) {
   const fills = scope.querySelectorAll(".skill-fill");
 
   if (!skillItems.length) return;
+
+  // If user prefers reduced motion, show all immediately
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    skillItems.forEach((item, index) => {
+      item.classList.add("is-visible");
+      fills[index]?.classList.add("animated");
+    });
+    return;
+  }
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -85,6 +103,8 @@ export function initDepthMeter() {
   const footerDepth = document.getElementById("footer-depth");
 
   if (!sections.length || !depthValue || !depthBar) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   let currentDepth = 0;
   let targetDepth = 0;
@@ -121,10 +141,14 @@ export function initDepthMeter() {
 
   function animateDepth() {
     targetDepth = getCurrentDepth();
-    currentDepth += (targetDepth - currentDepth) * 0.12;
 
-    if (Math.abs(currentDepth - targetDepth) < 0.5) {
+    if (reducedMotion) {
       currentDepth = targetDepth;
+    } else {
+      currentDepth += (targetDepth - currentDepth) * 0.12;
+      if (Math.abs(currentDepth - targetDepth) < 0.5) {
+        currentDepth = targetDepth;
+      }
     }
 
     const display = Math.round(currentDepth);
@@ -134,7 +158,7 @@ export function initDepthMeter() {
     const maxDepth = 4000;
     depthBar.style.height = `${Math.min(100, (currentDepth / maxDepth) * 100)}%`;
 
-    if (Math.abs(currentDepth - targetDepth) > 0.5) {
+    if (!reducedMotion && Math.abs(currentDepth - targetDepth) > 0.5) {
       rafId = window.requestAnimationFrame(animateDepth);
     }
   }
