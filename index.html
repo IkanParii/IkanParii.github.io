@@ -31,6 +31,17 @@
       </div>
     </nav>
 
+    <div id="depth-meter" aria-hidden="true">
+      <span class="depth-meter-label">Depth</span>
+      <span class="depth-meter-value" id="depth-value">0</span>
+      <div class="depth-meter-bar-wrap">
+        <div class="depth-meter-bar" id="depth-bar"></div>
+      </div>
+      <span class="depth-meter-unit">meters</span>
+    </div>
+
+    <div id="cursor-glow" aria-hidden="true"></div>
+
     <section id="hero">
       <div class="container">
         <div class="hero-grid">
@@ -55,10 +66,10 @@
       </div>
     </section>
 
-    <section id="about">
+    <section id="about" data-depth="200" data-depth-label="ABOUT">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">01 - Profile</div>
+          <div class="section-tag">DEPTH: 200m · ABOUT</div>
           <h2 class="section-title">Who's behind<br />the screen.</h2>
         </div>
         <div class="about-grid">
@@ -127,10 +138,10 @@
       </div>
     </section>
 
-    <section id="skills">
+    <section id="skills" data-depth="500" data-depth-label="EXPERTISE">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">02 - Expertise</div>
+          <div class="section-tag">DEPTH: 500m · EXPERTISE</div>
           <h2 class="section-title">Technical<br />Capability Matrix.</h2>
         </div>
         <div class="skills-grid">
@@ -142,10 +153,10 @@
       </div>
     </section>
 
-    <section id="certs">
+    <section id="certs" data-depth="1000" data-depth-label="CREDENTIALS">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">03 - Credentials</div>
+          <div class="section-tag">DEPTH: 1000m · CREDENTIALS</div>
           <h2 class="section-title">Certification<br />& Competition.</h2>
         </div>
         <div class="filter-bar cert-filter-bar">
@@ -173,10 +184,10 @@
       </div>
     </section>
 
-    <section id="projects">
+    <section id="projects" data-depth="2000" data-depth-label="PROJECTS">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">04 - Work</div>
+          <div class="section-tag">DEPTH: 2000m · PROJECTS</div>
           <h2 class="section-title">Featured Projects<br />& Analysis.</h2>
         </div>
         <div class="filter-bar">
@@ -188,20 +199,20 @@
       </div>
     </section>
 
-    <section id="blog">
+    <section id="blog" data-depth="3000" data-depth-label="WRITEUPS">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">05 - Blog</div>
+          <div class="section-tag">DEPTH: 3000m · WRITEUPS</div>
           <h2 class="section-title">Writeups<br />& Notes.</h2>
         </div>
         <div class="projects-grid" id="blog-grid"></div>
       </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" data-depth="4000" data-depth-label="CONTACT">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">06 - Contact</div>
+          <div class="section-tag">SURFACE CALL · CONTACT</div>
           <h2 class="section-title">Initialize<br />Connection.</h2>
         </div>
         <div class="contact-layout">
@@ -270,7 +281,7 @@
             >&copy; 2026 ikanparii - All rights reserved.</span
           >
           <span class="footer-mark"
-            >Built by <span>ikanparii</span> - Depth: 1200m</span
+            >Built by <span>ikanparii</span> - <span id="footer-depth">0</span>m</span
           >
         </div>
       </div>
