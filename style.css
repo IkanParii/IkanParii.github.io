@@ -9,8 +9,8 @@
   --floor: #01040A;
 
   /* Core colors */
-  --bioluminescence: #2EFFBC;
-  --bioluminescence-dim: rgba(46, 255, 188, 0.45);
+  --bioluminescence: #00D4FF;
+  --bioluminescence-dim: rgba(0, 212, 255, 0.45);
   --teal-secondary: #0A7E9C;
   --warm-contrast: #FF8C5A;
   --card-surface: #1A2A3A;
@@ -22,11 +22,11 @@
   /* Glow */
   --glow-accent: var(--bioluminescence);
   --glow-primary: var(--bioluminescence);
-  --glow-secondary: #41E4C0;
+  --glow-secondary: #22D3EE;
 
   /* Borders */
   --border: rgba(148, 163, 184, 0.24);
-  --border-hover: rgba(46, 255, 188, 0.35);
+  --border-hover: rgba(0, 212, 255, 0.35);
 
   /* Typography */
   --font-display: "Sora", sans-serif;
@@ -55,8 +55,8 @@ body {
   background:
     radial-gradient(
       circle at 50% -5%,
-      rgba(46, 255, 188, 0.18) 0%,
-      rgba(46, 255, 188, 0.06) 14%,
+      rgba(0, 212, 255, 0.18) 0%,
+      rgba(0, 212, 255, 0.06) 14%,
       transparent 36%
     ),
     radial-gradient(
@@ -86,11 +86,11 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(46, 255, 188, 0.08) 0%, rgba(46, 255, 188, 0.02) 12%, transparent 24%),
+    linear-gradient(180deg, rgba(0, 212, 255, 0.08) 0%, rgba(0, 212, 255, 0.02) 12%, transparent 24%),
     radial-gradient(
       ellipse 72% 28% at 50% 6%,
-      rgba(46, 255, 188, 0.08) 0%,
-      rgba(46, 255, 188, 0.035) 30%,
+      rgba(0, 212, 255, 0.08) 0%,
+      rgba(0, 212, 255, 0.035) 30%,
       transparent 66%
     ),
     radial-gradient(
@@ -323,8 +323,8 @@ section:nth-of-type(even) {
   pointer-events: none;
   z-index: -1;
   background:
-    radial-gradient(circle at 50% 12%, rgba(46, 255, 188, 0.08) 0%, rgba(46, 255, 188, 0.03) 20%, transparent 42%),
-    linear-gradient(180deg, rgba(46, 255, 188, 0.03) 0%, transparent 28%, rgba(2, 6, 23, 0.06) 100%);
+    radial-gradient(circle at 50% 12%, rgba(0, 212, 255, 0.08) 0%, rgba(0, 212, 255, 0.03) 20%, transparent 42%),
+    linear-gradient(180deg, rgba(0, 212, 255, 0.03) 0%, transparent 28%, rgba(2, 6, 23, 0.06) 100%);
   filter: blur(12px);
   opacity: 0.75;
 }
@@ -853,12 +853,12 @@ section:nth-of-type(even)::before {
 }
 
 .cred-card:hover {
-  border-color: rgba(46, 255, 188, 0.35);
+  border-color: rgba(0, 212, 255, 0.35);
   transform: translateY(-4px);
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.05) inset,
     0 16px 40px rgba(0, 0, 0, 0.28),
-    0 0 20px rgba(46, 255, 188, 0.06);
+    0 0 20px rgba(0, 212, 255, 0.06);
 }
 
 .cred-card:hover::before {
@@ -1409,7 +1409,7 @@ footer {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(46, 255, 188, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.12) 0%, transparent 70%);
   transform: translate(-50%, -50%);
   opacity: 0;
   transition: opacity 0.3s ease;
