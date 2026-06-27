@@ -244,8 +244,35 @@ export function initParticles(canvas) {
 
   window.addEventListener("resize", handleResize);
 
+  const cleanupFns = [];
+
+  // Bioluminescent cursor glow (desktop only)
+  const cursorEl = document.getElementById("cursor-glow");
+  if (!reducedMotion && cursorEl) {
+    const onMove = (e) => {
+      cursorEl.style.left = `${e.clientX}px`;
+      cursorEl.style.top = `${e.clientY}px`;
+      if (!cursorEl.classList.contains("is-visible")) {
+        cursorEl.classList.add("is-visible");
+      }
+    };
+    const onLeave = () => cursorEl.classList.remove("is-visible");
+    const onTouch = () => cursorEl.classList.remove("is-visible");
+
+    window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("pointerleave", onLeave, { passive: true });
+    window.addEventListener("touchstart", onTouch, { passive: true });
+
+    cleanupFns.push(
+      () => window.removeEventListener("pointermove", onMove),
+      () => window.removeEventListener("pointerleave", onLeave),
+      () => window.removeEventListener("touchstart", onTouch),
+    );
+  }
+
   return () => {
     window.cancelAnimationFrame(rafId);
     window.removeEventListener("resize", handleResize);
+    cleanupFns.forEach((fn) => fn());
   };
 }
