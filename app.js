@@ -15,6 +15,7 @@ import {
   initNavigation,
   initRevealAnimations,
   initSkillAnimations,
+  initDepthMeter,
 } from "./utils/animations.js";
 
 const CERTS_PER_PAGE = 4;
@@ -147,8 +148,9 @@ function initApp() {
 
   initParticles(document.getElementById("particles"));
   initNavigation(document.getElementById("nav"));
-  initGaugeTicks(document.getElementById("ticks-container"));
+  // initGaugeTicks(document.getElementById("ticks-container")); — vestigial, replaced by depth meter
   initRevealAnimations();
+  initDepthMeter();
   initSkillAnimations();
   setupProjectFilters({
     buttons: document.querySelectorAll(".filter-btn"),
