@@ -1,4 +1,6 @@
 import { profile } from "./data/profile.js";
+import { experience, organizations } from "./data/experience.js";
+import { contact } from "./data/contact.js";
 import { skills } from "./data/skills.js";
 import { certs } from "./data/certs.js";
 import { projects } from "./data/projects.js";
@@ -7,6 +9,8 @@ import { renderSkills } from "./components/renderSkills.js";
 import { renderCerts } from "./components/renderCerts.js";
 import { renderProjects } from "./components/renderProjects.js";
 import { renderBlog } from "./components/renderBlog.js";
+import { renderExperience } from "./components/renderExperience.js";
+import { renderContact } from "./components/renderContact.js";
 import { initSkillsChart } from "./utils/chart.js";
 import { setupProjectFilters } from "./utils/filters.js";
 import { initParticles } from "./utils/particles.js";
@@ -17,6 +21,7 @@ import {
   initSkillAnimations,
   initDepthMeter,
 } from "./utils/animations.js";
+import { initAllAnimations } from "./utils/animationsExtra.js";
 
 const CERTS_PER_PAGE = 4;
 const certsState = {
@@ -68,6 +73,8 @@ function hydrateCollections() {
   renderSkills(document.getElementById("skills-list"), skills);
   renderProjects(document.getElementById("projects-grid"), projects);
   renderBlog(document.getElementById("blog-grid"), blogEntries);
+  renderExperience(document.getElementById("experience-grid"), experience, organizations);
+  renderContact(document.getElementById("contact-layout"), contact);
   initCertsGallery(document.getElementById("certs-grid"), certs);
 }
 
@@ -152,11 +159,11 @@ function initApp() {
   initRevealAnimations();
   initDepthMeter();
   initSkillAnimations();
-  setupProjectFilters({
-    buttons: document.querySelectorAll(".filter-btn"),
-    cards: document.querySelectorAll(".project-card"),
-  });
+  // Project filter buttons are handled inside renderProjects pagination; no global filter needed
   initSkillsChart(document.getElementById("skillsChart"), skills);
+
+  // ── Extra interactive animations ──
+  initAllAnimations();
 }
 
 initApp();

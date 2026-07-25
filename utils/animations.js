@@ -25,7 +25,7 @@ export function initGaugeTicks(container) {
 
 export function initRevealAnimations() {
   const targets = document.querySelectorAll(
-    ".section-header, .about-grid, .stats-row, .skills-grid, .creds-grid, .filter-bar, .certs-pagination, .contact-layout, .contact-panel, .stat-item, .cred-card, .project-card, footer .footer-inner",
+    ".section-header, .about-grid, .stats-row, .skills-grid, .creds-grid, .filter-bar, .certs-pagination, .experience-grid, .exp-card, .contact-layout, .contact-panel, .stat-item, .cred-card, .project-card, footer .footer-inner",
   );
 
   // If user prefers reduced motion, reveal immediately without animation

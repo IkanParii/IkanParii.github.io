@@ -1,35 +1,35 @@
 export const skills = [
-  // Skill inti yang ingin ditampilkan di radar chart.
+  // Hard skills utama dari CV - ditampilkan di radar chart.
+  {
+    name: "Web Pentesting",
+    level: 80,
+  },
   {
     name: "Digital Forensics",
-    level: 65,
+    level: 75,
   },
   {
-    name: "Merendah",
-    level: 100,
-  },
-  {
-    name: "Cryptography",
+    name: "Security Operations",
     level: 78,
   },
   {
-    name: "Web exploitation",
-    level: 64,
+    name: "Networking",
+    level: 72,
+  },
+  {
+    name: "Web Development",
+    level: 70,
+  },
+  {
+    name: "Data Analysis",
+    level: 68,
   },
   {
     name: "Problem Solving",
-    level: 80,
+    level: 85,
   },
   {
-    name: "Public Speaking",
-    level: 80,
-  },
-  {
-    name: "Coding",
-    level: 60,
-  },
-  {
-    name: "Pecut AI",
-    level: 100,
+    name: "CTF Competition",
+    level: 82,
   },
 ];

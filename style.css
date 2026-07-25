@@ -294,7 +294,7 @@ nav.scrolled .nav-cta:hover {
 }
 
 section {
-  padding: 6rem 0;
+  padding: 4.5rem 0;
   position: relative;
   z-index: 2;
   background: transparent;
@@ -428,6 +428,11 @@ section:nth-of-type(even)::before {
   animation: hero-rise 0.95s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
+@keyframes hero-rise {
+  0%   { opacity: 0; transform: translateY(18px); filter: blur(6px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
 .hero-title-line:nth-of-type(1) {
   animation-delay: 0.08s;
 }
@@ -440,11 +445,21 @@ section:nth-of-type(even)::before {
   animation-delay: 0.36s;
 }
 
+/* Hero gradient text — animated color shift */
 .hero-title .gradient-text {
-  background: linear-gradient(to right, var(--bioluminescence), var(--glow-secondary));
+  background: linear-gradient(
+    90deg,
+    #00D4FF 0%,
+    #22D3EE 40%,
+    #a0f0ff 60%,
+    #00D4FF 100%
+  );
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: #00D4FF; /* fallback */
+  animation: hero-rise 0.95s cubic-bezier(0.2, 0.8, 0.2, 1) 0.22s forwards, gradient-shift 4s linear infinite !important;
 }
 
 .hero-desc {
@@ -579,7 +594,7 @@ section:nth-of-type(even)::before {
 }
 
 .section-header {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.75rem;
 }
 
 .section-tag {
@@ -909,6 +924,17 @@ section:nth-of-type(even)::before {
   margin-bottom: 0.35rem;
 }
 
+.cred-date {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+  letter-spacing: 0.04em;
+}
+
+
 .cred-name {
   font-size: 0.85rem;
   color: var(--text-secondary);
@@ -1044,25 +1070,50 @@ section:nth-of-type(even)::before {
 }
 
 .projects-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: rgba(148, 163, 184, 0.3);
-  border: 1px solid rgba(148, 163, 184, 0.26);
+  /* Layout is handled by .projects-grid-inner inside renderProjects */
 }
 
 .project-card {
   background: linear-gradient(180deg, rgba(6, 14, 30, 0.99), rgba(3, 7, 18, 0.99));
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 0;
   backdrop-filter: blur(18px);
-  padding: 2.5rem;
-  transition: background 0.3s;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 16px 40px rgba(0, 0, 0, 0.28);
+  padding: 1.65rem 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.8rem;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--glow-primary), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
 }
 
 .project-card:hover {
-  background: linear-gradient(180deg, rgba(5, 13, 28, 0.96), rgba(3, 7, 18, 0.98));
+  border-color: rgba(0, 212, 255, 0.35);
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 16px 40px rgba(0, 0, 0, 0.28),
+    0 0 20px rgba(0, 212, 255, 0.06);
+}
+
+.project-card:hover::before {
+  opacity: 1;
 }
 
 .project-card.is-hidden {
@@ -1145,8 +1196,72 @@ section:nth-of-type(even)::before {
   font-size: 0.58rem;
   color: var(--text-muted);
   border: 1px solid var(--border);
+  border-radius: 0;
   padding: 0.2rem 0.5rem;
   letter-spacing: 0.05em;
+}
+
+/* ── PROJECT PAGINATION ──────────────────────────────────────── */
+.projects-grid-inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.proj-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.proj-nav {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  letter-spacing: 0.05em;
+}
+
+.proj-nav:hover:not(.disabled) {
+  color: var(--glow-primary);
+  border-color: rgba(0, 212, 255, 0.35);
+}
+
+.proj-nav.disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.proj-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.proj-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.proj-dot--active {
+  background: var(--glow-primary);
+  transform: scale(1.3);
+}
+
+.proj-dot:hover:not(.proj-dot--active) {
+  background: var(--text-muted);
 }
 
 .project-link {
@@ -1444,7 +1559,9 @@ footer {
     grid-template-columns: 1fr 1fr;
   }
 
-  .projects-grid {
+  .projects-grid,
+  .projects-grid-inner,
+  .experience-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1529,4 +1646,650 @@ footer {
   .chart-wrap {
     height: 280px;
   }
+}
+
+/* ═══════════════════════════════════════
+   EXPERIENCE SECTION
+═══════════════════════════════════════ */
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.exp-card {
+  background: linear-gradient(180deg, rgba(6, 14, 30, 0.99), rgba(3, 7, 18, 0.99));
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 0;
+  backdrop-filter: blur(18px);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 16px 40px rgba(0, 0, 0, 0.28);
+  padding: 1.65rem 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.exp-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--glow-primary), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.exp-card:hover {
+  border-color: rgba(0, 212, 255, 0.35);
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 16px 40px rgba(0, 0, 0, 0.28),
+    0 0 20px rgba(0, 212, 255, 0.06);
+}
+
+.exp-card:hover::before {
+  opacity: 1;
+}
+
+.exp-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.exp-card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.exp-role {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.exp-company {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.exp-period {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--glow-primary);
+  white-space: nowrap;
+  border: 1px solid rgba(0, 212, 255, 0.28);
+  padding: 0.2rem 0.5rem;
+  border-radius: 0;
+  flex-shrink: 0;
+  background: rgba(0, 212, 255, 0.04);
+}
+
+.exp-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.exp-bullets li {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding-left: 1rem;
+  position: relative;
+  margin-bottom: 0.4rem;
+}
+
+.exp-bullets li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--glow-primary);
+  font-size: 0.65rem;
+  top: 0.1em;
+}
+
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.exp-tag {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  padding: 0.18rem 0.5rem;
+  border-radius: 0; /* sharp, consistent with .ptag and .cred-badge */
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .experience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .exp-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .exp-period {
+    align-self: flex-start;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ANIMATION MASTER BLOCK
+   – Glitch · Shimmer · Floating Orbs · Magnetic Tilt
+   – Ripple · Scramble · Typed Terminal · Stagger Timeline
+   – Neon Pulse · Gradient Shift · Counter · Ambient Blobs
+═══════════════════════════════════════════════════════════ */
+
+/* ── 1. GRADIENT TEXT ANIMATED SHIFT ─────────────────────── */
+@keyframes gradient-shift {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Override: animated version of hero gradient text */
+.hero-title .gradient-text {
+  background: linear-gradient(
+    90deg,
+    #00D4FF 0%,
+    #22D3EE 40%,
+    #a0f0ff 60%,
+    #00D4FF 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #00D4FF; /* fallback */
+  animation: hero-rise 0.95s cubic-bezier(0.2, 0.8, 0.2, 1) 0.22s forwards, gradient-shift 4s linear infinite !important;
+}
+
+/* ── 2. GLITCH EFFECT on hero gradient text hover ─────────── */
+@keyframes glitch-1 {
+  0%   { clip-path: inset(20% 0 60% 0); transform: translate(-4px, 0); }
+  25%  { clip-path: inset(60% 0 10% 0); transform: translate(4px, 0); }
+  50%  { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 0); }
+  75%  { clip-path: inset(5%  0 70% 0); transform: translate(3px, 0); }
+  100% { clip-path: inset(20% 0 60% 0); transform: translate(-4px, 0); }
+}
+@keyframes glitch-2 {
+  0%   { clip-path: inset(70% 0 5%  0); transform: translate(4px, 0); }
+  25%  { clip-path: inset(10% 0 50% 0); transform: translate(-4px, 0); }
+  50%  { clip-path: inset(55% 0 30% 0); transform: translate(2px, 0); }
+  75%  { clip-path: inset(30% 0 55% 0); transform: translate(-3px, 0); }
+  100% { clip-path: inset(70% 0 5%  0); transform: translate(4px, 0); }
+}
+
+.hero-title:hover .gradient-text {
+  position: relative;
+}
+.hero-title:hover .gradient-text::before,
+.hero-title:hover .gradient-text::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-title:hover .gradient-text::before {
+  color: #00FFFF;
+  animation: glitch-1 0.4s steps(2) infinite;
+  opacity: 0.7;
+}
+.hero-title:hover .gradient-text::after {
+  color: #FF00FF;
+  animation: glitch-2 0.4s steps(2) infinite;
+  opacity: 0.5;
+}
+
+/* ── 3. SHIMMER SWEEP on cards ────────────────────────────── */
+@keyframes shimmer-sweep {
+  0%   { transform: translateX(-120%) skewX(-18deg); }
+  100% { transform: translateX(220%)  skewX(-18deg); }
+}
+
+.cred-card,
+.exp-card,
+.project-card {
+  isolation: isolate;
+}
+
+.cred-card::after,
+.exp-card::after,
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.07) 45%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(0, 212, 255, 0.07) 55%,
+    transparent 100%
+  );
+  transform: translateX(-120%) skewX(-18deg);
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.cred-card:hover::after,
+.exp-card:hover::after,
+.project-card:hover::after {
+  animation: shimmer-sweep 0.65s ease forwards;
+}
+
+/* ── 4. FLOATING AMBIENT ORBS ─────────────────────────────── */
+@keyframes orb-float-a {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0.18; }
+  33%  { transform: translate(30px, -40px) scale(1.08); opacity: 0.26; }
+  66%  { transform: translate(-20px, 20px) scale(0.94); opacity: 0.14; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.18; }
+}
+@keyframes orb-float-b {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0.12; }
+  40%  { transform: translate(-35px, 25px) scale(1.05); opacity: 0.2; }
+  70%  { transform: translate(20px, -15px) scale(0.96); opacity: 0.1; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.12; }
+}
+@keyframes orb-float-c {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.08; }
+  50%  { transform: translate(15px, 30px) scale(1.1) rotate(180deg); opacity: 0.15; }
+  100% { transform: translate(0, 0) scale(1) rotate(360deg); opacity: 0.08; }
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.07;  /* subtle — won't break section color harmony */
+}
+.ambient-orb-a {
+  width: 380px; height: 380px;
+  background: radial-gradient(circle, rgba(0,212,255,0.8) 0%, transparent 70%);
+  top: -90px; right: -70px;
+  animation: orb-float-a 14s ease-in-out infinite;
+}
+.ambient-orb-b {
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(34,211,238,0.7) 0%, transparent 70%);
+  bottom: 0; left: -50px;
+  animation: orb-float-b 18s ease-in-out infinite;
+}
+.ambient-orb-c {
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,255,200,0.6) 0%, transparent 70%);
+  top: 50%; left: 48%;
+  animation: orb-float-c 22s ease-in-out infinite;
+}
+
+/* Inject orbs into sections via pseudo if needed */
+#hero .container,
+#about .container,
+#experience .container {
+  position: relative;
+  overflow: visible;
+}
+
+/* neon-pulse uses box-shadow only — no text-shadow anywhere */
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 4px rgba(0,212,255,0.25),
+      0 0 10px rgba(0,212,255,0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 8px rgba(0,212,255,0.45),
+      0 0 16px rgba(0,212,255,0.2);
+  }
+}
+
+/* t-prompt: plain color, no animation */
+.t-prompt {
+  color: var(--glow-secondary);
+}
+
+/* nav-logo: no animation override — original nav styles apply */
+
+
+/* ── 6. SECTION TAG SCRAMBLE REVEAL ──────────────────────── */
+.section-tag {
+  overflow: hidden;
+  position: relative;
+}
+.section-tag.scramble-active {
+  color: var(--glow-primary);
+  transition: color 0.3s;
+}
+
+/* ── 7. STAGGERED EXPERIENCE CARD ENTRANCE ───────────────── */
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fade-up-pop {
+  from { opacity: 0; transform: translateY(30px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.exp-column:nth-child(1) .exp-card {
+  opacity: 0;
+}
+.exp-column:nth-child(2) .exp-card {
+  opacity: 0;
+}
+.exp-column.anim-in:nth-child(1) .exp-card:nth-child(2) {
+  animation: slide-in-left 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.exp-column.anim-in:nth-child(1) .exp-card:nth-child(3) {
+  animation: slide-in-left 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s forwards;
+}
+.exp-column.anim-in:nth-child(2) .exp-card:nth-child(2) {
+  animation: slide-in-right 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.exp-column.anim-in:nth-child(2) .exp-card:nth-child(3) {
+  animation: slide-in-right 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s forwards;
+}
+
+/* ── 8. RIPPLE on buttons ─────────────────────────────────── */
+@keyframes ripple-out {
+  from { transform: scale(0); opacity: 0.4; }
+  to   { transform: scale(4); opacity: 0; }
+}
+
+.btn-primary,
+.btn-secondary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple {
+  position: absolute;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin-top: -30px;
+  margin-left: -30px;
+  background: rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+  animation: ripple-out 0.6s linear forwards;
+}
+
+/* ── 9. TYPED CURSOR blink enhancement ───────────────────── */
+@keyframes blink-glow {
+  0%, 49% { opacity: 1; box-shadow: 0 0 6px var(--glow-primary), 0 0 14px rgba(0,212,255,0.4); }
+  50%, 100% { opacity: 0; box-shadow: none; }
+}
+
+.t-cursor {
+  animation: blink-glow 1s step-end infinite !important;
+}
+
+/* ── 10. SECTION FADE-IN base override (smoother) ─────────── */
+.section-fade {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.section-fade.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── 11. MAGNETIC TILT — handled by JS, CSS perspective ────── */
+.cred-card,
+.project-card,
+.exp-card {
+  transform-style: preserve-3d;
+  perspective: 800px;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  will-change: transform;
+}
+
+/* ── 12. COUNTER NUMBER UP (stat section) ────────────────── */
+.stat-num {
+  display: inline-block;
+  transition: opacity 0.3s;
+}
+.stat-num.counting {
+  animation: neon-pulse 0.5s ease-in-out;
+}
+
+/* ── 13. SECTION DIVIDER PULSE LINE ──────────────────────── */
+@keyframes line-expand {
+  from { width: 0; opacity: 0; }
+  to   { width: 80px; opacity: 1; }
+}
+
+.section-header::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, var(--glow-primary), var(--glow-secondary), transparent);
+  margin-top: 1.25rem;
+  border-radius: 2px;
+  opacity: 0;
+}
+.section-header.is-visible::after {
+  animation: line-expand 0.8s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* ── 14. HERO FLOATING BADGE ─────────────────────────────── */
+@keyframes badge-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(0,212,255,0.3);
+  color: var(--glow-primary);
+  padding: 0.4rem 1rem;
+  margin-bottom: 1.5rem;
+  animation: badge-float 3s ease-in-out infinite, hero-rise 0.9s 0s cubic-bezier(0.2,0.8,0.2,1) both;
+  position: relative;
+  background: rgba(0,212,255,0.04);
+}
+
+.hero-badge::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--glow-primary);
+  box-shadow: 0 0 8px var(--glow-primary);
+  animation: blink-glow 1.5s step-end infinite;
+}
+
+/* ── 15. TERMINAL ENTRY ANIMATION ────────────────────────── */
+@keyframes type-in {
+  from { max-height: 0; opacity: 0; overflow: hidden; }
+  to   { max-height: 2em; opacity: 1; }
+}
+
+.terminal .t-output,
+.terminal p {
+  animation: type-in 0.3s ease forwards;
+}
+.terminal p:nth-child(1)  { animation-delay: 0.1s; }
+.terminal p:nth-child(2)  { animation-delay: 0.25s; }
+.terminal p:nth-child(3)  { animation-delay: 0.4s; }
+.terminal p:nth-child(4)  { animation-delay: 0.55s; }
+.terminal p:nth-child(5)  { animation-delay: 0.7s; }
+.terminal p:nth-child(6)  { animation-delay: 0.85s; }
+.terminal p:nth-child(7)  { animation-delay: 1s; }
+.terminal p:nth-child(8)  { animation-delay: 1.15s; }
+.terminal p:nth-child(9)  { animation-delay: 1.3s; }
+.terminal p:nth-child(10) { animation-delay: 1.45s; }
+
+.terminal .t-output:nth-child(1) { animation-delay: 0.55s; }
+.terminal .t-output:nth-child(2) { animation-delay: 0.7s; }
+.terminal .t-output:nth-child(3) { animation-delay: 0.85s; }
+.terminal .t-output:nth-child(4) { animation-delay: 1s; }
+.terminal .t-output:nth-child(5) { animation-delay: 1.15s; }
+.terminal .t-output:nth-child(6) { animation-delay: 1.3s; }
+
+/* ── 16. HOVER GLOW BORDER on contact links ──────────────── */
+@keyframes border-travel {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+.contact-link-item {
+  position: relative;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.contact-link-item:hover {
+  transform: translateX(6px);
+}
+
+/* ── 17. SCAN LINE ANIMATION on terminal ─────────────────── */
+@keyframes scan-line {
+  0%   { top: 0%; }
+  100% { top: 100%; }
+}
+
+.terminal {
+  position: relative;
+  overflow: hidden;
+}
+.terminal::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,212,255,0.15), transparent);
+  animation: scan-line 3s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── 18. CERT CARD FLIP TILT SHADOW ─────────────────────── */
+.cred-card:hover {
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(0, 212, 255, 0.2),
+    0 0 30px rgba(0, 212, 255, 0.06),
+    inset 0 1px 0 rgba(255,255,255,0.06) !important;
+}
+
+/* ── 19. PROJECT CARD colored accent per category ──────────── */
+.project-card--tool:hover {
+  border-color: rgba(0, 212, 255, 0.45);
+  box-shadow: 0 0 24px rgba(0,212,255,0.08), 0 16px 40px rgba(0,0,0,0.3);
+}
+.project-card--writeup:hover {
+  border-color: rgba(34, 211, 238, 0.45);
+  box-shadow: 0 0 24px rgba(34,211,238,0.08), 0 16px 40px rgba(0,0,0,0.3);
+}
+
+/* ── 20. EXPERIENCE COLUMN LABEL ────────────────────────────── */
+/* Static color — no pulse, consistent with section palette */
+.exp-column-label {
+  color: var(--glow-primary);
+  opacity: 0.85;
+}
+
+/* ── 21. SMOOTH NAV LINK UNDERLINE EXPAND ─────────────────── */
+.nav-links a {
+  position: relative;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -3px;
+  width: 0; height: 1px;
+  background: var(--glow-primary);
+  transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 6px var(--glow-primary);
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ── 22. FLOATING HERO PARTICLES (CSS-only sparkles) ──────── */
+@keyframes sparkle {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-120px) rotate(720deg); opacity: 0; }
+}
+
+.hero-sparkle {
+  position: absolute;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--glow-primary);
+  box-shadow: 0 0 6px var(--glow-primary);
+  pointer-events: none;
+  animation: sparkle var(--dur, 3s) linear var(--delay, 0s) infinite;
+}
+
+/* ── 23. SKILL BAR GLOW on animate ──────────────────────── */
+.skill-fill.animated {
+  box-shadow: 0 0 8px rgba(0,212,255,0.5), 0 0 16px rgba(0,212,255,0.2);
+}
+
+/* ── 24. CONTACT PANEL ENTRANCE ─────────────────────────── */
+@keyframes panel-slide-in {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.contact-panel.is-visible {
+  animation: panel-slide-in 0.6s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* ── 25. FOOTER DEPTH COUNTER ───────────────────────────────── */
+#footer-depth {
+  color: var(--glow-primary);
+  /* no animation — static accent color is enough */
 }

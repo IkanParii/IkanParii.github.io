@@ -26,7 +26,7 @@ export function renderCerts(container, certs = []) {
           <div class="cred-badge cred-badge--${escapeHtml(String(cert.badge || "").toLowerCase().replace(/\s+/g, "-"))}">
             ${escapeHtml(cert.badge)}
           </div>
-          <div class="cred-issuer">${escapeHtml(cert.issuer)}</div>
+          <div class="cred-issuer">${escapeHtml(cert.issuer)}${cert.date ? ` <span class="cred-date">${escapeHtml(cert.date)}</span>` : ""}</div>
           <div class="cred-name">${escapeHtml(cert.name)}</div>
           <div class="cred-related">${escapeHtml(cert.related || "")}</div>
           <div class="cred-status ${cert.status === "done" ? "done" : "wip"}">
