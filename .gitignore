@@ -22,13 +22,22 @@ Desktop.ini
 # IDE & Editor configurations
 .vscode/
 .idea/
-.claude/
-.superpowers/
 *.suo
 *.user
 *.userossc
 *.sln
 *.swp
+
+# AI Assistant workspace folders & configuration files
+.claude/
+.superpowers/
+.agents/
+.gemini/
+.cursor/
+.windsurf/
+.copilot/
+CLAUDE.md
+AGENTS.md
 
 # Workspace scratch files and temporary notes
 plan.md
