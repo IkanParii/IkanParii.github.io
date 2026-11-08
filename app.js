@@ -12,7 +12,6 @@ import { renderBlog } from "./components/renderBlog.js";
 import { renderExperience } from "./components/renderExperience.js";
 import { renderContact } from "./components/renderContact.js";
 import { initSkillsChart } from "./utils/chart.js";
-import { setupProjectFilters } from "./utils/filters.js";
 import { initParticles } from "./utils/particles.js";
 import {
   initGaugeTicks,

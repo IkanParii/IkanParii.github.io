@@ -5,8 +5,8 @@ export function renderContact(container, profile = {}) {
 
   const email = escapeHtml(profile.email || "frasyiqpramana@gmail.com");
   const github = escapeHtml(profile.github || "https://github.com/IkanParii");
-  const linkedin = escapeHtml(profile.linkedin || "https://www.linkedin.com/in/fachri-rasyiq-pramana");
-  const website = escapeHtml(profile.website || "https://ikanparii.github.io");
+  const linkedin = escapeHtml(profile.linkedin || "https://linkedin.com/in/fachri-rasyiq-pramana");
+  const website = escapeHtml(profile.website || "https://ikanparii.my.id");
 
   container.innerHTML = `
     <div>

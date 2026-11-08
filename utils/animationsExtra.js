@@ -6,6 +6,13 @@
 
 /* ── 1. MAGNETIC 3D TILT on cards ─────────────────────────── */
 export function initMagneticTilt() {
+  if (
+    window.matchMedia("(pointer: coarse)").matches ||
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    return;
+  }
+
   const TILT_MAX = 10; // degrees
 
   function bindTilt(cards) {
@@ -164,64 +171,7 @@ export function initAmbientOrbs() {
   });
 }
 
-/* ── 6. EXPERIENCE CARDS STAGGERED ENTRANCE ───────────────── */
-export function initExperienceStagger() {
-  const grid = document.getElementById("experience-grid");
-  if (!grid) return;
-
-  const columns = grid.querySelectorAll(".exp-column");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          columns.forEach((col, i) => {
-            setTimeout(() => col.classList.add("anim-in"), i * 120);
-          });
-          observer.disconnect();
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-
-  observer.observe(grid);
-}
-
-/* ── 7. HERO FLOATING BADGE ───────────────────────────────── */
-export function injectHeroBadge() {
-  // Badge removed per design update — user doesn't want the capsule element
-}
-
-/* ── 8. CURSOR GLOW TRAIL ─────────────────────────────────── */
-export function initCursorTrail() {
-  const trail = document.getElementById("cursor-glow");
-  if (!trail) return;
-
-  let mx = window.innerWidth / 2;
-  let my = window.innerHeight / 2;
-  let cx = mx;
-  let cy = my;
-  let raf;
-
-  document.addEventListener("mousemove", (e) => {
-    mx = e.clientX;
-    my = e.clientY;
-  });
-
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  function tick() {
-    cx = lerp(cx, mx, 0.1);
-    cy = lerp(cy, my, 0.1);
-    trail.style.left = `${cx}px`;
-    trail.style.top = `${cy}px`;
-    raf = requestAnimationFrame(tick);
-  }
-  raf = requestAnimationFrame(tick);
-}
-
-/* ── 9. COUNTER ANIMATION for stat numbers ────────────────── */
+/* ── 6. COUNTER ANIMATION for stat numbers ────────────────── */
 export function initCounters() {
   const stats = document.querySelectorAll(".stat-num");
   if (!stats.length) return;
@@ -289,27 +239,16 @@ export function initScrollProgress() {
   }, { passive: true });
 }
 
-/* ── 11. PROJECT STAGGER ─────────────────────────────────────
-   Disabled: pagination re-renders cards on page change,
-   so stagger conflicts. Cards use section-fade from IntersectionObserver instead.
-*/
-export function initProjectStagger() {}
-
-
 /* ── INIT ALL ─────────────────────────────────────────────── */
 export function initAllAnimations() {
   // Short delay so DOM is fully painted
   requestAnimationFrame(() => {
-    injectHeroBadge();
     initHeroSparkles();
-    initCursorTrail();
     initScrollProgress();
     initRippleButtons();
     initSectionTagScramble();
     initAmbientOrbs();
-    initExperienceStagger();
     initCounters();
-    initProjectStagger();
     // Tilt last — needs cards to be visible
     setTimeout(initMagneticTilt, 200);
   });

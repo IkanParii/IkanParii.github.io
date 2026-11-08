@@ -1,10 +1,9 @@
 import { escapeHtml } from "../utils/helpers.js";
 
-let activeExpFilter = "all";
-
 export function renderExperience(container, experience = [], organizations = []) {
   if (!container) return;
 
+  let activeExpFilter = "all";
   const allItems = [...experience, ...organizations];
   const filterButtons = document.querySelectorAll("[data-exp-filter]");
 
@@ -46,9 +45,17 @@ export function renderExperience(container, experience = [], organizations = [])
   function render() {
     const filtered = activeExpFilter === "all"
       ? allItems
-      : allItems.filter((item) => item.category === activeExpFilter);
+      : allItems.filter((item) => {
+          if (item.category === activeExpFilter) return true;
+          if (Array.isArray(item.categories) && item.categories.includes(activeExpFilter)) return true;
+          return false;
+        });
 
-    container.innerHTML = filtered.map(buildCard).join("");
+    if (filtered.length === 0) {
+      container.innerHTML = `<div class="cert-empty">Belum ada data pengalaman di kategori ini.</div>`;
+    } else {
+      container.innerHTML = filtered.map(buildCard).join("");
+    }
 
     // Sync filter buttons
     filterButtons.forEach((btn) => {

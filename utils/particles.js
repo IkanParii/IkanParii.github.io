@@ -248,7 +248,7 @@ export function initParticles(canvas) {
 
   // Bioluminescent cursor glow (desktop only)
   const cursorEl = document.getElementById("cursor-glow");
-  if (!reducedMotion && cursorEl) {
+  if (!reducedMotion && cursorEl && window.matchMedia("(pointer: fine)").matches) {
     const onMove = (e) => {
       cursorEl.style.left = `${e.clientX}px`;
       cursorEl.style.top = `${e.clientY}px`;

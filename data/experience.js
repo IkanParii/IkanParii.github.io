@@ -1,28 +1,29 @@
 export const experience = [
   {
-    category: "internship",
-    typeLabel: "internship",
-    role: "Security Operations Center (SOC) Analyst L1",
+    category: "profesional",
+    categories: ["profesional", "internship"],
+    typeLabel: "Internship",
+    role: "Security Operations Center (SOC) Analyst L1 Intern",
     company: "Xcode (PT. Teknologi Server Indonesia)",
     period: "Sep 2025 - Des 2025",
     bullets: [
-      "Memantau dan menganalisis event keamanan real-time untuk mendeteksi potensi insiden",
-      "Melakukan triage awal alert serta eskalasi insiden sesuai prosedur operasional standar",
-      "Menyusun dokumentasi dan laporan pemantauan analisis keamanan harian",
+      "Memantau security event dan alert secara real-time untuk mengidentifikasi indikasi ancaman serta mendukung proses deteksi insiden keamanan.",
+      "Melakukan initial alert triage berdasarkan indikasi ancaman dan tingkat urgensi, kemudian mengeskalasikan temuan sesuai SOP yang berlaku.",
+      "Menyusun dokumentasi dan laporan monitoring keamanan harian secara komprehensif.",
     ],
-    tags: ["SIEM", "Threat Detection", "Security Monitoring"],
+    tags: ["SIEM", "Alert Triage", "Incident Escalation", "Security Reporting"],
   },
   {
     category: "internship",
+    categories: ["internship"],
     typeLabel: "Internship",
     role: "Graphic Design Intern",
-    company: "PT. Satu Visi Indocreative | B.One Corp",
+    company: "PT. Satu Visi Indocreative / B.One Corp",
     period: "Jul 2023 - Sep 2023",
     bullets: [
-      "Merancang aset visual kreatif untuk kebutuhan kampanye dan publikasi media sosial",
-      "Memberikan dukungan teknis dan penanganan komunikasi publik saat program berjalan",
+      "Merancang desain kreatif kampanye media sosial dan materi konten untuk meningkatkan engagement audiens.",
     ],
-    tags: ["Adobe Illustrator", "Photoshop", "Social Media"],
+    tags: ["Adobe Creative Suite", "Social Media", "Graphic Design"],
   },
 ];
 
@@ -34,10 +35,10 @@ export const organizations = [
     org: "PROTIC (Programming Technology Informatics Club)",
     period: "Jul 2025 - Sekarang",
     bullets: [
-      "Mengatur materi latihan rutin, membimbing anggota, dan mengelola alur kerja divisi data",
-      "Dipercaya memimpin divisi data setelah 9 bulan aktif berkontribusi sebagai anggota",
+      "Dipromosikan memimpin divisi data setelah 9 bulan berkontribusi aktif sebagai anggota.",
+      "Mengatur materi latihan rutin, membimbing anggota, dan mengelola alur kerja divisi data.",
     ],
-    tags: ["Leadership", "Teaching", "Programming"],
+    tags: ["Leadership", "Data Division", "Mentoring"],
   },
   {
     category: "organisasi",
@@ -46,9 +47,9 @@ export const organizations = [
     org: "Cyber Security Community",
     period: "Feb 2025 - Sekarang",
     bullets: [
-      "Mengelola media sosial, desain materi publikasi, dan dokumentasi kegiatan organisasi",
-      "Mengoordinasikan alur informasi publikasi antar-divisi secara terstruktur",
+      "Mengelola media sosial, desain materi publikasi, dan dokumentasi kegiatan organisasi.",
+      "Mengoordinasikan alur informasi publikasi antar-divisi secara terstruktur.",
     ],
-    tags: ["Design", "Social Media", "Coordination"],
+    tags: ["Media & Kominfo", "Social Media", "Coordination"],
   },
 ];

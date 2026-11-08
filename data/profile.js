@@ -6,71 +6,27 @@ export const profile = {
   alias: "IkanParii",
 
   // Copy singkat untuk hero dan ringkasan profil.
-  headline: "Cybersecurity Enthusiast | Web Penetration Tester | CTF Player",
-  role: "Cybersecurity Enthusiast",
-  location: "Bojong Gede, Bogor",
+  headline: "Cybersecurity Student | SOC Analyst L1 | Security Monitoring & Incident Triage",
+  role: "Cybersecurity Student & SOC Analyst L1",
+  location: "Bogor, Indonesia",
   institution: "Politeknik Negeri Cilacap",
-  focus: ["Web Pentesting", "CTF", "SOC"],
-  tools: ["Burp Suite", "Wireshark", "DVWA"],
+  education: "D4 Rekayasa Keamanan Siber (2024 - 2028)",
+  focus: ["Security Monitoring", "Incident Triage", "Web Pentesting", "CTF"],
+  tools: ["Burp Suite", "Wireshark", "DVWA/DVAPI", "Laravel", "JavaScript"],
   summary:
-    "Mahasiswa D4 Rekayasa Keamanan Siber dengan pengalaman sebagai SOC Analyst L1 dan aktif dalam kompetisi CTF. Berfokus pada web penetration testing dan SOC Analyst.",
+    "Mahasiswa D4 Rekayasa Keamanan Siber dengan pengalaman magang sebagai SOC Analyst L1, mencakup security alert monitoring, initial triage, incident escalation, dan security reporting. Memiliki pengalaman praktik pengujian keamanan web di lab serta mengantongi sertifikasi C3SA, Junior Ethical Hacker, dan Juara di berbagai kompetisi CTF.",
 
-  // Copy utama section About — professional humanized narration.
+  // Copy utama section About — naratif profesional dan personal.
   about:
-    'Saya <strong>Fachri Rasyiq Pramana</strong> (dikenal di komunitas sebagai <strong>IkanParii</strong>), mahasiswa D4 Rekayasa Keamanan Siber di Politeknik Negeri Cilacap. Berbekal pengalaman sebagai <strong>SOC Analyst L1</strong> di Xcode, fokus praktis saya berpusat pada web penetration testing, analisis forensik digital, serta penanganan insiden.',
+    'Saya <strong>Fachri Rasyiq Pramana</strong> (dikenal sebagai <strong>IkanParii</strong>), mahasiswa D4 Rekayasa Keamanan Siber di Politeknik Negeri Cilacap. Berbekal pengalaman magang sebagai <strong>SOC Analyst L1</strong> di Xcode (PT. Teknologi Server Indonesia), keahlian saya berfokus pada pemantauan security alert real-time, initial alert triage, incident escalation, dan penyusunan security reporting, serta pengujian keamanan aplikasi web.',
 
-  // Copy lanjutan — naratif, personal, tanpa kata-kata klise AI.
+  // Copy lanjutan.
   aboutSecond:
-    'Di portofolio ini, saya mendokumentasikan proyek teknis, catatan eksplorasi laboratorium, serta writeup tantangan CTF yang telah saya selesaikan.',
+    'Aktif mencetak prestasi di ranah kompetisi keamanan siber, di antaranya <strong>Juara 1 Cyscom CTF 2025</strong>, <strong>Juara 2 Cyscom CTF 2026</strong>, <strong>Juara 2 Nusantara Cyber Security 2026 (APTIKOM) Jawa Tengah</strong>, dan Juara 2 Best Availability PlayIT 2026. Di portofolio ini, saya mendokumentasikan rekam jejak profesional, sertifikasi (C3SA, Junior Ethical Hacker, Web Pentester), dan arsip CTF writeups.',
 
   // Info kontak
   email: "frasyiqpramana@gmail.com",
-  linkedin: "https://www.linkedin.com/in/fachri-rasyiq-pramana",
+  linkedin: "https://linkedin.com/in/fachri-rasyiq-pramana",
   github: "https://github.com/IkanParii",
-  website: "https://ikanparii.github.io",
-
-  // Pengalaman profesional
-  experience: [
-    {
-      role: "Security Operations Center (SOC) Analyst L1",
-      company: "Xcode (PT. Teknologi Server Indonesia)",
-      period: "Sep 2025 - Des 2025",
-      bullets: [
-        "Memantau dan menganalisis event keamanan real-time untuk mendeteksi potensi insiden",
-        "Melakukan triage awal alert serta eskalasi insiden sesuai prosedur operasional standar",
-        "Menyusun dokumentasi dan laporan pemantauan analisis keamanan harian",
-      ],
-    },
-    {
-      role: "Graphic Design Intern",
-      company: "PT. Satu Visi Indocreative | B.One Corp",
-      period: "Jul 2023 - Sep 2023",
-      bullets: [
-        "Merancang aset visual kreatif untuk kebutuhan kampanye dan publikasi media sosial",
-        "Memberikan dukungan teknis dan penanganan komunikasi publik saat program berjalan",
-      ],
-    },
-  ],
-
-  // Pengalaman organisasi
-  organizations: [
-    {
-      role: "Head of Data Division",
-      org: "PROTIC (Programming Technology Informatics Club)",
-      period: "Jul 2025 - Sekarang",
-      bullets: [
-        "Mengatur materi latihan rutin, membimbing anggota, dan mengelola alur kerja divisi data",
-        "Dipercaya memimpin divisi data setelah 9 bulan aktif berkontribusi sebagai anggota",
-      ],
-    },
-    {
-      role: "Ketua Divisi Media/Kominfo",
-      org: "Cyber Security Community",
-      period: "Feb 2025 - Sekarang",
-      bullets: [
-        "Mengelola media sosial, desain materi publikasi, dan dokumentasi kegiatan organisasi",
-        "Mengoordinasikan alur informasi publikasi antar-divisi secara terstruktur",
-      ],
-    },
-  ],
+  website: "https://ikanparii.my.id",
 };

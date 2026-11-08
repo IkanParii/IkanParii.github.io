@@ -1,35 +1,34 @@
 export const skills = [
-  // Hard skills utama dari CV - ditampilkan di radar chart.
-  {
-    name: "Web Pentesting",
-    level: 80,
-  },
-  {
-    name: "Digital Forensics",
-    level: 75,
-  },
   {
     name: "Security Operations",
-    level: 78,
+    level: 88,
   },
   {
-    name: "Networking",
-    level: 72,
+    name: "Web Security",
+    level: 86,
   },
   {
-    name: "Web Development",
-    level: 70,
-  },
-  {
-    name: "Data Analysis",
-    level: 68,
-  },
-  {
-    name: "Problem Solving",
+    name: "Incident Triage",
     level: 85,
   },
   {
-    name: "CTF Competition",
-    level: 82,
+    name: "CTF & Challenge",
+    level: 86,
+  },
+  {
+    name: "Tools (Burp/Wireshark)",
+    level: 84,
+  },
+  {
+    name: "Digital Forensics",
+    level: 80,
+  },
+  {
+    name: "Networking",
+    level: 78,
+  },
+  {
+    name: "Web Development",
+    level: 75,
   },
 ];
