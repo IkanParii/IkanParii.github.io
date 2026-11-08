@@ -1,26 +1,26 @@
-import { profile } from "./data/profile.js";
-import { experience, organizations } from "./data/experience.js";
-import { contact } from "./data/contact.js";
-import { skills } from "./data/skills.js";
-import { certs } from "./data/certs.js";
-import { projects } from "./data/projects.js";
-import { blogEntries } from "./data/blog.js";
-import { renderSkills } from "./components/renderSkills.js";
-import { renderCerts } from "./components/renderCerts.js";
-import { renderProjects } from "./components/renderProjects.js";
-import { renderBlog } from "./components/renderBlog.js";
-import { renderExperience } from "./components/renderExperience.js";
-import { renderContact } from "./components/renderContact.js";
-import { initSkillsChart } from "./utils/chart.js";
-import { initParticles } from "./utils/particles.js";
+import { profile } from "./data/profile.js?v=2.1";
+import { experience, organizations } from "./data/experience.js?v=2.1";
+import { contact } from "./data/contact.js?v=2.1";
+import { skills } from "./data/skills.js?v=2.1";
+import { certs } from "./data/certs.js?v=2.1";
+import { projects } from "./data/projects.js?v=2.1";
+import { blogEntries } from "./data/blog.js?v=2.1";
+import { renderSkills } from "./components/renderSkills.js?v=2.1";
+import { renderCerts } from "./components/renderCerts.js?v=2.1";
+import { renderProjects } from "./components/renderProjects.js?v=2.1";
+import { renderBlog } from "./components/renderBlog.js?v=2.1";
+import { renderExperience } from "./components/renderExperience.js?v=2.1";
+import { renderContact } from "./components/renderContact.js?v=2.1";
+import { initSkillsChart } from "./utils/chart.js?v=2.1";
+import { initParticles } from "./utils/particles.js?v=2.1";
 import {
   initGaugeTicks,
   initNavigation,
   initRevealAnimations,
   initSkillAnimations,
   initDepthMeter,
-} from "./utils/animations.js";
-import { initAllAnimations } from "./utils/animationsExtra.js";
+} from "./utils/animations.js?v=2.1";
+import { initAllAnimations } from "./utils/animationsExtra.js?v=2.1";
 
 const CERTS_PER_PAGE = 4;
 const certsState = {

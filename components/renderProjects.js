@@ -1,6 +1,6 @@
 import { escapeHtml } from "../utils/helpers.js";
 
-const PAGE_SIZE = 4;
+const PAGE_SIZE = 6;
 
 export function renderProjects(container, projects = []) {
   if (!container) return;
