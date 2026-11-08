@@ -300,91 +300,13 @@ section {
   background: transparent;
 }
 
-section:nth-of-type(even) {
-  background: transparent;
-}
-
-#hero {
-  border-top: 0;
-  background: transparent;
-}
-
 #hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   padding: 0;
-}
-
-#hero::before {
-  content: "";
-  position: absolute;
-  inset: -2rem 0 -4rem;
-  pointer-events: none;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 50% 12%, rgba(0, 212, 255, 0.08) 0%, rgba(0, 212, 255, 0.03) 20%, transparent 42%),
-    linear-gradient(180deg, rgba(0, 212, 255, 0.03) 0%, transparent 28%, rgba(2, 6, 23, 0.06) 100%);
-  filter: blur(12px);
-  opacity: 0.75;
-}
-
-#hero::after {
-  content: "";
-  position: absolute;
-  inset: -2rem 0 -4rem;
-  pointer-events: none;
-  z-index: -1;
-  background:
-    linear-gradient(90deg, transparent 0%, rgba(186, 230, 253, 0.03) 8%, transparent 18%),
-    linear-gradient(90deg, transparent 20%, rgba(125, 211, 252, 0.025) 28%, transparent 38%),
-    linear-gradient(90deg, transparent 50%, rgba(34, 211, 238, 0.03) 58%, transparent 68%),
-    linear-gradient(90deg, transparent 78%, rgba(20, 184, 166, 0.022) 86%, transparent 96%);
-  background-size: 240px 100%, 320px 100%, 280px 100%, 360px 100%;
-  background-position: 0 0, 80px 0, 160px 0, 40px 0;
-  background-repeat: repeat-x;
-  filter: blur(10px);
-  opacity: 0.45;
-  mix-blend-mode: screen;
-}
-
-section::before {
-  content: "";
-  position: absolute;
-  inset: -8rem 0 -8rem;
-  pointer-events: none;
-  z-index: -1;
-  background:
-    radial-gradient(
-      ellipse 80% 30% at 50% 0%,
-      rgba(186, 230, 253, 0.03) 0%,
-      transparent 72%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.008) 0%,
-      rgba(2, 6, 23, 0.02) 16%,
-      rgba(2, 6, 23, 0.012) 52%,
-      rgba(2, 6, 23, 0.05) 100%
-    );
-  filter: blur(10px);
-  opacity: 0.65;
-}
-
-section:nth-of-type(even)::before {
-  background:
-    radial-gradient(
-      ellipse 78% 28% at 50% 0%,
-      rgba(125, 211, 252, 0.022) 0%,
-      transparent 72%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.006) 0%,
-      rgba(8, 16, 33, 0.018) 18%,
-      rgba(2, 6, 23, 0.012) 52%,
-      rgba(2, 6, 23, 0.06) 100%
-    );
+  border-top: 0;
+  background: transparent;
 }
 
 .hero-grid {
