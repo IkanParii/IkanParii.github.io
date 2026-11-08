@@ -14,7 +14,7 @@ export const profile = {
   focus: ["Security Monitoring", "Incident Triage", "Web Pentesting"],
   tools: ["Burp Suite", "Wireshark", "DVWA/DVAPI"],
   summary:
-    "Mahasiswa D4 Rekayasa Keamanan Siber dengan pengalaman magang sebagai SOC Analyst L1, mencakup security alert monitoring, initial triage, incident escalation, dan security reporting. Memiliki pengalaman praktik pengujian keamanan web di lab serta mengantongi sertifikasi C3SA, Junior Ethical Hacker, dan Juara di berbagai kompetisi CTF.",
+    "Mahasiswa D4 Rekayasa Keamanan Siber & SOC Analyst L1, berfokus pada security monitoring, alert triage, dan web security testing.",
 
   // Copy utama section About — naratif profesional dan personal.
   about:
