@@ -92,16 +92,6 @@ body::before {
       rgba(0, 212, 255, 0.08) 0%,
       rgba(0, 212, 255, 0.035) 30%,
       transparent 66%
-    ),
-    radial-gradient(
-      ellipse 54% 24% at 20% 20%,
-      rgba(6, 182, 212, 0.045) 0%,
-      transparent 56%
-    ),
-    radial-gradient(
-      ellipse 58% 34% at 82% 16%,
-      rgba(10, 126, 156, 0.035) 0%,
-      transparent 58%
     );
   pointer-events: none;
   z-index: 0;
@@ -285,6 +275,49 @@ nav.scrolled .nav-cta:hover {
     0 0 0 1px rgba(125, 211, 252, 0.08);
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(125, 211, 252, 0.32);
+  background: rgba(8, 20, 42, 0.65);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  transition: all 0.25s;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.lang-toggle:hover {
+  border-color: var(--glow-primary);
+  background: rgba(0, 212, 255, 0.08);
+  color: var(--text-primary);
+}
+
+.lang-opt {
+  transition: color 0.2s, font-weight 0.2s;
+}
+
+.lang-opt.active {
+  color: var(--glow-primary);
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(0, 212, 255, 0.45);
+}
+
+.lang-sep {
+  opacity: 0.3;
+}
+
 @keyframes hero-rise {
   to {
     opacity: 1;
@@ -307,6 +340,59 @@ section {
   padding: 0;
   border-top: 0;
   background: transparent;
+  position: relative;
+  overflow: visible;
+}
+
+/* ── HERO SONAR WAVE PULSES (Periodic Ping & Echo) ────────── */
+.hero-sonar {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(78vw, 620px);
+  height: min(78vw, 620px);
+  pointer-events: none;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sonar-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 212, 255, 0.55);
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.22), inset 0 0 14px rgba(0, 212, 255, 0.08);
+  animation: sonar-pulse 4s cubic-bezier(0.12, 0.75, 0.35, 1) infinite;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.sonar-ring:nth-child(2) {
+  animation-delay: 2s;
+}
+
+@keyframes sonar-pulse {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  60% {
+    opacity: 0.3;
+  }
+  95% {
+    opacity: 0.04;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
 
 .hero-grid {
@@ -464,55 +550,6 @@ section {
 
 .depth-gauge {
   display: none;
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.scroll-line {
-  width: 1px;
-  height: 60px;
-  background: linear-gradient(180deg, rgba(0, 212, 255, 0.55), transparent);
-  animation: scroll-down 2s ease-in-out infinite;
-}
-
-@keyframes scroll-down {
-  0% {
-    transform: scaleY(0);
-    transform-origin: top;
-  }
-
-  50% {
-    transform: scaleY(1);
-    transform-origin: top;
-  }
-
-  51% {
-    transform: scaleY(1);
-    transform-origin: bottom;
-  }
-
-  100% {
-    transform: scaleY(0);
-    transform-origin: bottom;
-  }
-}
-
-.scroll-text {
-  font-family: var(--font-mono);
-  font-size: 0.55rem;
-  color: var(--text-muted);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  writing-mode: vertical-rl;
 }
 
 .section-header {
@@ -1367,10 +1404,11 @@ footer {
 
 .section-fade {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(28px);
   transition:
-    opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
-    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .section-fade.is-visible {
@@ -1841,60 +1879,6 @@ footer {
 .exp-card:hover::after,
 .project-card:hover::after {
   animation: shimmer-sweep 0.65s ease forwards;
-}
-
-/* ── 4. FLOATING AMBIENT ORBS ─────────────────────────────── */
-@keyframes orb-float-a {
-  0%   { transform: translate(0, 0) scale(1); opacity: 0.18; }
-  33%  { transform: translate(30px, -40px) scale(1.08); opacity: 0.26; }
-  66%  { transform: translate(-20px, 20px) scale(0.94); opacity: 0.14; }
-  100% { transform: translate(0, 0) scale(1); opacity: 0.18; }
-}
-@keyframes orb-float-b {
-  0%   { transform: translate(0, 0) scale(1); opacity: 0.12; }
-  40%  { transform: translate(-35px, 25px) scale(1.05); opacity: 0.2; }
-  70%  { transform: translate(20px, -15px) scale(0.96); opacity: 0.1; }
-  100% { transform: translate(0, 0) scale(1); opacity: 0.12; }
-}
-@keyframes orb-float-c {
-  0%   { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.08; }
-  50%  { transform: translate(15px, 30px) scale(1.1) rotate(180deg); opacity: 0.15; }
-  100% { transform: translate(0, 0) scale(1) rotate(360deg); opacity: 0.08; }
-}
-
-.ambient-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(72px);
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.07;  /* subtle — won't break section color harmony */
-}
-.ambient-orb-a {
-  width: 380px; height: 380px;
-  background: radial-gradient(circle, rgba(0,212,255,0.8) 0%, transparent 70%);
-  top: -90px; right: -70px;
-  animation: orb-float-a 14s ease-in-out infinite;
-}
-.ambient-orb-b {
-  width: 280px; height: 280px;
-  background: radial-gradient(circle, rgba(34,211,238,0.7) 0%, transparent 70%);
-  bottom: 0; left: -50px;
-  animation: orb-float-b 18s ease-in-out infinite;
-}
-.ambient-orb-c {
-  width: 180px; height: 180px;
-  background: radial-gradient(circle, rgba(0,255,200,0.6) 0%, transparent 70%);
-  top: 50%; left: 48%;
-  animation: orb-float-c 22s ease-in-out infinite;
-}
-
-/* Inject orbs into sections via pseudo if needed */
-#hero .container,
-#about .container,
-#experience .container {
-  position: relative;
-  overflow: visible;
 }
 
 /* neon-pulse uses box-shadow only — no text-shadow anywhere */

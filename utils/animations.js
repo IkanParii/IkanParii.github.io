@@ -25,7 +25,7 @@ export function initGaugeTicks(container) {
 
 export function initRevealAnimations() {
   const targets = document.querySelectorAll(
-    ".section-header, .about-grid, .stats-row, .skills-grid, .creds-grid, .filter-bar, .certs-pagination, .experience-grid, .exp-card, .contact-layout, .contact-panel, .stat-item, .cred-card, .project-card, footer .footer-inner",
+    "#hero .hero-grid, .section-header, .about-grid, .skills-grid, .creds-grid, .filter-bar, .certs-pagination, .projects-grid, .experience-grid, .exp-card, .contact-layout, .contact-panel, footer .footer-inner",
   );
 
   // If user prefers reduced motion, reveal immediately without animation
@@ -46,11 +46,16 @@ export function initRevealAnimations() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
+        } else {
+          // Animate OUT when scrolled out of view (bidirectional scroll animation)
+          entry.target.classList.remove("is-visible");
         }
       });
     },
-    { threshold: 0.15 },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px",
+    },
   );
 
   targets.forEach((target) => observer.observe(target));
@@ -74,19 +79,23 @@ export function initSkillAnimations(scope = document) {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-
-        skillItems.forEach((item, index) => {
-          window.setTimeout(() => {
-            item.classList.add("is-visible");
-            fills[index]?.classList.add("animated");
-          }, index * 90);
-        });
-
-        observer.disconnect();
+        if (entry.isIntersecting) {
+          skillItems.forEach((item, index) => {
+            window.setTimeout(() => {
+              item.classList.add("is-visible");
+              fills[index]?.classList.add("animated");
+            }, index * 80);
+          });
+        } else {
+          // Reset animation on exit so it re-animates on return
+          skillItems.forEach((item, index) => {
+            item.classList.remove("is-visible");
+            fills[index]?.classList.remove("animated");
+          });
+        }
       });
     },
-    { threshold: 0.35 },
+    { threshold: 0.25 },
   );
 
   const anchor = document.getElementById("skills");

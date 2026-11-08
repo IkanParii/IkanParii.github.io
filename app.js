@@ -1,4 +1,4 @@
-import { profile } from "./data/profile.js?v=2.4";
+import { profile } from "./data/profile.js?v=2.5";
 import { experience, organizations } from "./data/experience.js?v=2.2";
 import { contact } from "./data/contact.js?v=2.2";
 import { skills } from "./data/skills.js?v=2.2";
@@ -21,6 +21,13 @@ import {
   initDepthMeter,
 } from "./utils/animations.js?v=2.2";
 import { initAllAnimations } from "./utils/animationsExtra.js?v=2.2";
+import {
+  initI18n,
+  getLang,
+  getTranslatedProjects,
+  getTranslatedExperience,
+  getTranslatedOrganizations,
+} from "./utils/i18n.js?v=2.5";
 
 const CERTS_PER_PAGE = 4;
 const certsState = {
@@ -67,13 +74,17 @@ function hydrateProfileContent() {
 
 }
 
-function hydrateCollections() {
+function hydrateCollections(lang = getLang()) {
+  const currentProjects = getTranslatedProjects(lang);
+  const currentExp = getTranslatedExperience(lang);
+  const currentOrg = getTranslatedOrganizations(lang);
+
   // Render the main content sections from data modules to keep the page easy to maintain.
   renderSkills(document.getElementById("skills-list"), skills);
-  renderProjects(document.getElementById("projects-grid"), projects);
+  renderProjects(document.getElementById("projects-grid"), currentProjects);
   renderBlog(document.getElementById("blog-grid"), blogEntries);
-  renderExperience(document.getElementById("experience-grid"), experience, organizations);
-  renderContact(document.getElementById("contact-layout"), contact);
+  renderExperience(document.getElementById("experience-grid"), currentExp, currentOrg);
+  renderContact(document.getElementById("contact-layout"), contact, lang);
   initCertsGallery(document.getElementById("certs-grid"), certs);
 }
 
@@ -149,6 +160,10 @@ function initCertsGallery(container, sourceCerts = []) {
 }
 
 function initApp() {
+  initI18n((newLang) => {
+    hydrateCollections(newLang);
+  });
+
   hydrateProfileContent();
   hydrateCollections();
 

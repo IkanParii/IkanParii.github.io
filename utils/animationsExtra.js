@@ -107,12 +107,11 @@ export function initSectionTagScramble() {
           const el = entry.target;
           const original = el.dataset.originalText || el.textContent;
           el.dataset.originalText = original;
-          scrambleText(el, original, 1000);
-          observer.unobserve(el);
+          scrambleText(el, original, 700);
         }
       });
     },
-    { threshold: 0.6 }
+    { threshold: 0.5 }
   );
 
   tags.forEach((tag) => observer.observe(tag));
@@ -144,32 +143,7 @@ export function initHeroSparkles() {
   }
 }
 
-/* ── 5. AMBIENT FLOATING ORBS per section ─────────────────── */
-export function initAmbientOrbs() {
-  const sections = ["#about", "#skills", "#experience", "#certs"];
-
-  sections.forEach((sel, idx) => {
-    const section = document.querySelector(sel);
-    if (!section) return;
-
-    section.style.position = "relative";
-    section.style.overflow = "hidden";
-
-    // Orb A
-    const orbA = document.createElement("div");
-    orbA.className = "ambient-orb ambient-orb-a";
-    orbA.style.animationDelay = `${idx * 2}s`;
-    section.appendChild(orbA);
-
-    // Orb B (every other section)
-    if (idx % 2 === 0) {
-      const orbB = document.createElement("div");
-      orbB.className = "ambient-orb ambient-orb-b";
-      orbB.style.animationDelay = `${idx * 1.5 + 3}s`;
-      section.appendChild(orbB);
-    }
-  });
-}
+/* ── 5. (REMOVED AMBIENT ORBS FOR SEAMLESS BACKGROUND) ── */
 
 /* ── 6. COUNTER ANIMATION for stat numbers ────────────────── */
 export function initCounters() {
@@ -247,7 +221,6 @@ export function initAllAnimations() {
     initScrollProgress();
     initRippleButtons();
     initSectionTagScramble();
-    initAmbientOrbs();
     initCounters();
     // Tilt last — needs cards to be visible
     setTimeout(initMagneticTilt, 200);

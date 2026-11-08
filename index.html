@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -104,7 +104,7 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="style.css?v=2.3" />
+    <link rel="stylesheet" href="style.css?v=2.5" />
   </head>
   <body>
     <canvas id="particles"></canvas>
@@ -116,15 +116,22 @@
         <div class="nav-inner">
           <a href="#hero" class="nav-logo">ikanparii<span></span></a>
           <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Expertise</a></li>
-            <li><a href="#certs">Credentials</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#blog">Writeups</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about" data-i18n="nav_about">About</a></li>
+            <li><a href="#skills" data-i18n="nav_skills">Expertise</a></li>
+            <li><a href="#certs" data-i18n="nav_certs">Credentials</a></li>
+            <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
+            <li><a href="#experience" data-i18n="nav_exp">Experience</a></li>
+            <li><a href="#blog" data-i18n="nav_blog">Writeups</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
           </ul>
-          <a href="#contact" class="nav-cta">Connect</a>
+          <div class="nav-actions">
+            <button id="lang-toggle" class="lang-toggle" aria-label="Ganti bahasa / Switch language" title="Switch language ID / EN">
+              <span class="lang-opt" data-lang="id">ID</span>
+              <span class="lang-sep">/</span>
+              <span class="lang-opt active" data-lang="en">EN</span>
+            </button>
+            <a href="#contact" class="nav-cta" data-i18n="nav_connect">Connect</a>
+          </div>
         </div>
       </div>
     </nav>
@@ -141,21 +148,33 @@
     <div id="cursor-glow" aria-hidden="true"></div>
 
     <section id="hero">
+      <!-- Deep Sea Sonar Wave Rings (0s & 2s) -->
+      <div class="hero-sonar" aria-hidden="true">
+        <div class="sonar-ring"></div>
+        <div class="sonar-ring"></div>
+      </div>
+
       <div class="container">
         <div class="hero-grid">
           <div>
-            <div class="section-tag hero-reveal">FACHRI RASYIQ PRAMANA · SOC ANALYST L1</div>
+            <div class="section-tag hero-reveal" data-i18n="hero_tag">FACHRI RASYIQ PRAMANA · SOC ANALYST L1</div>
+
             <h1 class="hero-title">
               <span class="hero-title-line">Exploring the</span>
               <span class="hero-title-line gradient-text">Deep Sea of Cyber</span>
               <span class="hero-title-line">Security.</span>
             </h1>
+
             <p class="hero-desc hero-reveal">
               Mahasiswa D4 Rekayasa Keamanan Siber &amp; SOC Analyst L1, berfokus pada security monitoring, alert triage, dan web security testing.
             </p>
+
             <div class="hero-actions hero-reveal">
-              <a href="#projects" class="btn-primary">View Projects</a>
-              <a href="#contact" class="btn-secondary">Get in Touch</a>
+              <a href="#projects" class="btn-primary">
+                <span data-i18n="hero_btn_projects">View Projects</span>
+                <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#contact" class="btn-secondary" data-i18n="hero_btn_contact">Get in Touch</a>
             </div>
           </div>
           <div class="depth-gauge"></div>
@@ -166,8 +185,8 @@
     <section id="about" data-depth="200" data-depth-label="ABOUT">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">DEPTH: 200m · ABOUT</div>
-          <h2 class="section-title">Who's behind<br />the screen.</h2>
+          <div class="section-tag" data-i18n="about_tag">DEPTH: 200m · ABOUT</div>
+          <h2 class="section-title" data-i18n="about_title">Who's behind<br />the screen.</h2>
         </div>
         <div class="about-grid">
           <div class="about-bio" id="about-bio-placeholder">
@@ -223,8 +242,8 @@
     <section id="skills" data-depth="500" data-depth-label="EXPERTISE">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">DEPTH: 500m · EXPERTISE</div>
-          <h2 class="section-title">Technical<br />Capability Matrix.</h2>
+          <div class="section-tag" data-i18n="skills_tag">DEPTH: 400m · EXPERTISE</div>
+          <h2 class="section-title" data-i18n="skills_title">Technical<br />Capability Matrix.</h2>
         </div>
         <div class="skills-grid">
           <div class="skills-list" id="skills-list"></div>
@@ -238,29 +257,22 @@
     <section id="certs" data-depth="1000" data-depth-label="CREDENTIALS">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">DEPTH: 1000m · CREDENTIALS</div>
-          <h2 class="section-title">Certification<br />& Competition.</h2>
+          <div class="section-tag" data-i18n="certs_tag">DEPTH: 600m · CREDENTIALS &amp; AWARDS</div>
+          <h2 class="section-title" data-i18n="certs_title">Certification<br />&amp; Achievements.</h2>
         </div>
         <div class="filter-bar cert-filter-bar">
-          <button class="filter-btn active" data-cert-filter="all">All</button>
-          <button class="filter-btn" data-cert-filter="certification">
-            Certification
-          </button>
-          <button class="filter-btn" data-cert-filter="bootcamp">
-            Bootcamp
-          </button>
-          <button class="filter-btn" data-cert-filter="competition">
-            Competition
-          </button>
+          <button class="filter-btn active" data-cert-filter="all" data-i18n="certs_filter_all">All</button>
+          <button class="filter-btn" data-cert-filter="certification" data-i18n="certs_filter_cert">Certifications</button>
+          <button class="filter-btn" data-cert-filter="competition" data-i18n="certs_filter_ctf">CTF Awards</button>
         </div>
         <div class="creds-grid" id="certs-grid"></div>
         <div class="certs-pagination">
-          <button class="cert-page-btn" id="certs-prev" type="button">
-            Prev
+          <button class="cert-page-btn" id="certs-prev" type="button" data-i18n="certs_page_prev">
+            ← Previous
           </button>
           <span class="cert-page-info" id="certs-page-info">Slide 1 / 1</span>
-          <button class="cert-page-btn" id="certs-next" type="button">
-            Next
+          <button class="cert-page-btn" id="certs-next" type="button" data-i18n="certs_page_next">
+            Next →
           </button>
         </div>
       </div>
@@ -269,13 +281,13 @@
     <section id="projects" data-depth="2000" data-depth-label="PROJECTS">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">DEPTH: 2000m · PROJECTS</div>
-          <h2 class="section-title">Featured Projects<br />& Analysis.</h2>
+          <div class="section-tag" data-i18n="projects_tag">DEPTH: 800m · PROJECTS</div>
+          <h2 class="section-title" data-i18n="projects_title">Featured Projects<br />&amp; Analysis.</h2>
         </div>
         <div class="filter-bar">
-          <button type="button" class="filter-btn active" data-filter="all">All</button>
-          <button type="button" class="filter-btn" data-filter="tool">Tools</button>
-          <button type="button" class="filter-btn" data-filter="webapp">Web App</button>
+          <button type="button" class="filter-btn active" data-filter="all" data-i18n="proj_filter_all">All</button>
+          <button type="button" class="filter-btn" data-filter="tool" data-i18n="proj_filter_tools">Tools</button>
+          <button type="button" class="filter-btn" data-filter="webapp" data-i18n="proj_filter_webapp">Web App</button>
         </div>
         <div class="projects-grid" id="projects-grid"></div>
       </div>
@@ -284,14 +296,14 @@
     <section id="experience" data-depth="2700" data-depth-label="EXPERIENCE">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">DEPTH: 2700m · EXPERIENCE</div>
-          <h2 class="section-title">Professional<br />&amp; Organizational.</h2>
+          <div class="section-tag" data-i18n="exp_tag">DEPTH: 1000m · EXPERIENCE</div>
+          <h2 class="section-title" data-i18n="exp_title">Work History<br />&amp; Leadership.</h2>
         </div>
         <div class="filter-bar exp-filter-bar">
-          <button class="filter-btn active" data-exp-filter="all">All</button>
-          <button class="filter-btn" data-exp-filter="profesional">Profesional</button>
-          <button class="filter-btn" data-exp-filter="organisasi">Organisasi</button>
-          <button class="filter-btn" data-exp-filter="internship">Internship</button>
+          <button class="filter-btn active" data-exp-filter="all" data-i18n="exp_filter_all">All</button>
+          <button class="filter-btn" data-exp-filter="profesional" data-i18n="exp_filter_pro">Professional</button>
+          <button class="filter-btn" data-exp-filter="internship" data-i18n="exp_filter_intern">Internship</button>
+          <button class="filter-btn" data-exp-filter="organisasi" data-i18n="exp_filter_org">Organizations</button>
         </div>
         <div class="experience-grid" id="experience-grid"></div>
       </div>
@@ -300,8 +312,8 @@
     <section id="blog" data-depth="3400" data-depth-label="WRITEUPS">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">DEPTH: 3400m · WRITEUPS</div>
-          <h2 class="section-title">Writeups<br />& Notes.</h2>
+          <div class="section-tag" data-i18n="blog_tag">DEPTH: 1200m · WRITEUPS</div>
+          <h2 class="section-title" data-i18n="blog_title">CTF Writeups<br />&amp; Lab Notes.</h2>
         </div>
         <div class="projects-grid" id="blog-grid"></div>
       </div>
@@ -310,8 +322,8 @@
     <section id="contact" data-depth="4000" data-depth-label="CONTACT">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">SURFACE CALL · CONTACT</div>
-          <h2 class="section-title">Initialize<br />Connection.</h2>
+          <div class="section-tag" data-i18n="contact_tag">DEPTH: 1400m · CONTACT</div>
+          <h2 class="section-title" data-i18n="contact_title">Initiate<br />Connection.</h2>
         </div>
         <div class="contact-layout" id="contact-layout"></div>
       </div>
@@ -321,15 +333,15 @@
       <div class="container">
         <div class="footer-inner">
           <span class="footer-copy"
-            >&copy; 2026 ikanparii - All rights reserved.</span
+            >&copy; 2026 ikanparii - <span data-i18n="footer_rights">All rights reserved.</span></span
           >
           <span class="footer-mark"
-            >Built by <span>ikanparii</span> - <span id="footer-depth">0</span>m</span
+            ><span data-i18n="footer_built">Built by</span> <span>ikanparii</span> - <span id="footer-depth">0</span>m</span
           >
         </div>
       </div>
     </footer>
 
-    <script type="module" src="app.js?v=2.4"></script>
+    <script type="module" src="app.js?v=2.5"></script>
   </body>
 </html>
