@@ -1132,6 +1132,18 @@ section:nth-of-type(even)::before {
   border-bottom-color: rgba(20, 184, 166, 0.22);
 }
 
+.project-card--webapp {
+  box-shadow: inset 0 1px 0 rgba(0, 212, 255, 0.12);
+}
+
+.project-card--webapp .project-tag {
+  color: var(--glow-primary);
+}
+
+.project-card--webapp .project-link {
+  border-bottom-color: rgba(0, 212, 255, 0.25);
+}
+
 .project-card--writeup {
   box-shadow: inset 0 1px 0 rgba(245, 158, 11, 0.1);
 }
@@ -2139,13 +2151,16 @@ footer {
 
 /* ── 15. TERMINAL ENTRY ANIMATION ────────────────────────── */
 @keyframes type-in {
-  from { max-height: 0; opacity: 0; overflow: hidden; }
-  to   { max-height: 2em; opacity: 1; }
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .terminal .t-output,
 .terminal p {
   animation: type-in 0.3s ease forwards;
+  line-height: 1.6;
+  margin: 0.25rem 0;
+  word-break: break-word;
 }
 .terminal p:nth-child(1)  { animation-delay: 0.1s; }
 .terminal p:nth-child(2)  { animation-delay: 0.25s; }

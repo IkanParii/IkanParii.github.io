@@ -11,8 +11,8 @@ export const profile = {
   location: "Bogor, Indonesia",
   institution: "Politeknik Negeri Cilacap",
   education: "D4 Rekayasa Keamanan Siber (2024 - 2028)",
-  focus: ["Security Monitoring", "Incident Triage", "Web Pentesting", "CTF"],
-  tools: ["Burp Suite", "Wireshark", "DVWA/DVAPI", "Laravel", "JavaScript"],
+  focus: ["Security Monitoring", "Incident Triage", "Web Pentesting"],
+  tools: ["Burp Suite", "Wireshark", "DVWA/DVAPI"],
   summary:
     "Mahasiswa D4 Rekayasa Keamanan Siber dengan pengalaman magang sebagai SOC Analyst L1, mencakup security alert monitoring, initial triage, incident escalation, dan security reporting. Memiliki pengalaman praktik pengujian keamanan web di lab serta mengantongi sertifikasi C3SA, Junior Ethical Hacker, dan Juara di berbagai kompetisi CTF.",
 

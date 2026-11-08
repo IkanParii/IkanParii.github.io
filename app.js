@@ -1,26 +1,26 @@
-import { profile } from "./data/profile.js?v=2.1";
-import { experience, organizations } from "./data/experience.js?v=2.1";
-import { contact } from "./data/contact.js?v=2.1";
-import { skills } from "./data/skills.js?v=2.1";
-import { certs } from "./data/certs.js?v=2.1";
-import { projects } from "./data/projects.js?v=2.1";
-import { blogEntries } from "./data/blog.js?v=2.1";
-import { renderSkills } from "./components/renderSkills.js?v=2.1";
-import { renderCerts } from "./components/renderCerts.js?v=2.1";
-import { renderProjects } from "./components/renderProjects.js?v=2.1";
-import { renderBlog } from "./components/renderBlog.js?v=2.1";
-import { renderExperience } from "./components/renderExperience.js?v=2.1";
-import { renderContact } from "./components/renderContact.js?v=2.1";
-import { initSkillsChart } from "./utils/chart.js?v=2.1";
-import { initParticles } from "./utils/particles.js?v=2.1";
+import { profile } from "./data/profile.js?v=2.2";
+import { experience, organizations } from "./data/experience.js?v=2.2";
+import { contact } from "./data/contact.js?v=2.2";
+import { skills } from "./data/skills.js?v=2.2";
+import { certs } from "./data/certs.js?v=2.2";
+import { projects } from "./data/projects.js?v=2.2";
+import { blogEntries } from "./data/blog.js?v=2.2";
+import { renderSkills } from "./components/renderSkills.js?v=2.2";
+import { renderCerts } from "./components/renderCerts.js?v=2.2";
+import { renderProjects } from "./components/renderProjects.js?v=2.2";
+import { renderBlog } from "./components/renderBlog.js?v=2.2";
+import { renderExperience } from "./components/renderExperience.js?v=2.2";
+import { renderContact } from "./components/renderContact.js?v=2.2";
+import { initSkillsChart } from "./utils/chart.js?v=2.2";
+import { initParticles } from "./utils/particles.js?v=2.2";
 import {
   initGaugeTicks,
   initNavigation,
   initRevealAnimations,
   initSkillAnimations,
   initDepthMeter,
-} from "./utils/animations.js?v=2.1";
-import { initAllAnimations } from "./utils/animationsExtra.js?v=2.1";
+} from "./utils/animations.js?v=2.2";
+import { initAllAnimations } from "./utils/animationsExtra.js?v=2.2";
 
 const CERTS_PER_PAGE = 4;
 const certsState = {
